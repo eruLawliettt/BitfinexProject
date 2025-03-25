@@ -17,8 +17,7 @@ namespace BitfinexConnectorProject.ViewModels
 
         private const decimal TickersCount = 8;
 
-        private event Action RecalculationUSDTBalance;
-        private event Action RecalculationBTCBalance;
+        private event Action RecalculationBalance;
 
         private ObservableCollection<TickerDTO> _tickers;
         public ObservableCollection<TickerDTO> Tickers
@@ -43,12 +42,31 @@ namespace BitfinexConnectorProject.ViewModels
             set => Set(ref _balanceBtc, value, nameof(BalanceBtc));
         }
 
+        private decimal _balanceXrp;
+        public decimal BalanceXrp
+        {
+            get { return _balanceXrp; }
+            set => Set(ref _balanceXrp, value, nameof(BalanceXrp));
+        }
 
+        private decimal _balanceXmr;
+        public decimal BalanceXmr
+        {
+            get { return _balanceXmr; }
+            set => Set(ref _balanceXmr, value, nameof(BalanceXmr));
+        }
+
+        private decimal _balanceDash;
+        public decimal BalanceDash
+        {
+            get { return _balanceDash; }
+            set => Set(ref _balanceDash, value, nameof(BalanceDash));
+        }
 
         public BalanceViewModel()
         {
-            RecalculationUSDTBalance += CalculateUSDTBalance;
-            RecalculationBTCBalance += CalculateBTCBalance;
+            RecalculationBalance += CalculateUSDTBalance;
+            RecalculationBalance += CalculateBTCBalance;
             _client.TickerDTOProcessing += AddTickerDTO;
 
             Tickers = [];
@@ -77,7 +95,6 @@ namespace BitfinexConnectorProject.ViewModels
 
             BalanceUsdt = tempBalance;
         }
-
         private void CalculateBTCBalance()
         {
             decimal tempBalance = 0M;
@@ -94,7 +111,39 @@ namespace BitfinexConnectorProject.ViewModels
             tempBalance += TestBalance["DASH"] * tempTicker.BidAskAverage;
 
             BalanceBtc = tempBalance;
+
+            CalculateXRPByBTCBalance();
+            CalculateXMRByBTCBalance();
+            CalculateDASHByBTCBalance();
         }
+        private void CalculateXRPByBTCBalance()
+        {
+            decimal tempBalance = 0M;
+
+            var tempTicker = Tickers.First(t => t.Pair == "tXRPBTCticker");
+            tempBalance += BalanceBtc / tempTicker.BidAskAverage;
+
+            BalanceXrp = tempBalance;
+        }
+        private void CalculateXMRByBTCBalance()
+        {
+            decimal tempBalance = 0M;
+
+            var tempTicker = Tickers.First(t => t.Pair == "tXMRBTCticker");
+            tempBalance += BalanceBtc / tempTicker.BidAskAverage;
+
+            BalanceXmr = tempBalance;
+        }
+        private void CalculateDASHByBTCBalance()
+        {
+            decimal tempBalance = 0M;
+
+            var tempTicker = Tickers.First(t => t.Pair == "tDSHBTCticker");
+            tempBalance += BalanceBtc / tempTicker.BidAskAverage;
+
+            BalanceDash = tempBalance;
+        }
+
 
         private async Task WaitForTickersAsync()
         {
@@ -103,20 +152,6 @@ namespace BitfinexConnectorProject.ViewModels
                 await Task.Delay(100);
             }
         }
-
-        // USDT - complete
-        // BTC - complete
-        // XRP 
-
-        // 1 BTC
-        // 15_000 XRP
-        // 50 XMR
-        // 30 DASH
-
-        // Need tickers : tXRPBTC, tXRPXMR does not exist -> recalc via BTC, tXRPDSH does not exist -> recalc via BTC
-
-        // Current price =  ( BID + ASK ) / 2
-
 
         private void AddTickerDTO(TickerDTO tickerDTO)
         {
@@ -127,8 +162,7 @@ namespace BitfinexConnectorProject.ViewModels
                     var ticker = Tickers.First(t => t.Pair.Equals(tickerDTO.Pair));
                     Tickers.Remove(ticker);
                     Tickers.Add(tickerDTO);
-                    RecalculationUSDTBalance?.Invoke();
-                    RecalculationBTCBalance?.Invoke(); // переделать! оптимизировать!!!
+                    RecalculationBalance?.Invoke();
                 }
                 else
                     Tickers.Add(tickerDTO);
@@ -138,25 +172,38 @@ namespace BitfinexConnectorProject.ViewModels
 
         private async Task InitializeSubscriptionsAsync()
         {
-            await SubscribeAsync("tBTCUST");
-            await SubscribeAsync("tXRPUST");
-            await SubscribeAsync("tXMRUST");
-            await SubscribeAsync("tDSHUSD");
-            await SubscribeAsync("tUSTUSD");
-            await SubscribeAsync("tXRPBTC");
-            await SubscribeAsync("tXMRBTC");
-            await SubscribeAsync("tDSHBTC");
+            await Task.Delay(100);
+            await _client.ConnectToWebSocketAsync();
 
-            await WaitForTickersAsync();
+            if (_client.IsConnected)
+            {
+                Subscribe("tBTCUST");
+                Subscribe("tXRPUST");
+                Subscribe("tXMRUST");
+                Subscribe("tDSHUSD");
+                Subscribe("tUSTUSD");
+                Subscribe("tXRPBTC");
+                Subscribe("tXMRBTC");
+                Subscribe("tDSHBTC");
 
-            CalculateUSDTBalance();
-            CalculateBTCBalance();
+                await WaitForTickersAsync();
+
+                CalculateUSDTBalance();
+                CalculateBTCBalance();
+            }
+            else
+            {
+                await InitializeSubscriptionsAsync();
+            }
         }
-        private async Task SubscribeAsync(string pair)
+
+        // после тестов удалить !!!
+        /*private async Task SubscribeAsync(string pair)
         {
+            await Task.Delay(100);
             Subscribe(pair);
-            await Task.Delay(500);
-        }
+        }*/
+
         private void Subscribe(string pair) => _client.SubscribeTickers(pair);
         private void Unsubscribe(string pair) => _client.UnsubscribeTickers(pair);
 

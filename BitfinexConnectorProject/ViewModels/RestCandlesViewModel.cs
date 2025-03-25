@@ -42,7 +42,6 @@ namespace BitfinexConnectorProject.ViewModels
             GetLastETHUSDCandlesInPeriod1DFrom1MarchCommand = new RelayCommand(async _ => await GetLastETHUSDCandlesInPeriod1DFrom1March());
         }
 
-
         private async Task GetLastBTCUSDCandlesInPeriod1m()
         {
             await LoadCandlesDataAsync("BTCUSD", _candlePeriod[0], null);

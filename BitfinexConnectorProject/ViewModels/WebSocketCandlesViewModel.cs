@@ -42,7 +42,18 @@ namespace BitfinexConnectorProject.ViewModels
         {
             App.Current.Dispatcher.Invoke(() =>
             {
-                Candles.Insert(0, candle);
+                if(Candles.Count == 0)
+                    Candles.Insert(0, candle);
+
+                else if (Candles.Any(c => c.Pair == candle.Pair && c.OpenTime.Minute == candle.OpenTime.Minute))
+                {
+                    Candle badCandle = Candles.First(c => c.Pair == candle.Pair && c.OpenTime.Minute == candle.OpenTime.Minute);
+                    Candles.Insert(Candles.IndexOf(badCandle), candle);
+                    Candles.Remove(badCandle);
+                }
+                else
+                    Candles.Insert(0, candle);
+
                 if (Candles.Count > 100)
                     Candles.RemoveAt(Candles.Count - 1);
             });

@@ -149,6 +149,8 @@ namespace BitfinexConnectorProject.Services
         private readonly Dictionary<int, string> _channelMap = new();
         private readonly byte[] _buffer = new byte[8192];
 
+        public bool IsConnected = false;
+
         public event Action<Trade> NewBuyTrade;
         public event Action<Trade> NewSellTrade;
 
@@ -164,8 +166,8 @@ namespace BitfinexConnectorProject.Services
             }
             
             await _ws.ConnectAsync(_webSocketUri, CancellationToken.None);
-            _ = Task.Run(ReceiveMessages); // своего рода костыль, запуск прослушивания, я уверен это можно сделать лучше
-        
+            IsConnected = true;
+            _ = Task.Run(ReceiveMessages);
             
         }
         private async Task SendMessage(string message)
@@ -173,7 +175,6 @@ namespace BitfinexConnectorProject.Services
             byte[] buffer = Encoding.UTF8.GetBytes(message);
             await _ws.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, CancellationToken.None);
         }
-
         private async Task ReceiveMessages()
         {
             while (_ws.State == WebSocketState.Open)
@@ -183,7 +184,6 @@ namespace BitfinexConnectorProject.Services
                 ProcessMessage(message);
             }
         }
-
         private void ProcessMessage(string message)
         {
             try
@@ -273,12 +273,7 @@ namespace BitfinexConnectorProject.Services
                         }
                         // Trade Update нет, зато второй член массива - массив длинной или 6 или 10, если 6 - пришла свеча
                         else if (json[1].ValueKind == JsonValueKind.Array && json[1].GetArrayLength() == 6)
-                        {
-                            // скип свечей которые ещё не завершены
-                            long currentTimeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                            if (json[1][0].GetInt64() >= currentTimeStamp - 60_000) // тут хардкод на минутный интервал, позже нужно придумать более гибкую реализацию  
-                                return;
-                            
+                        {  
                             var candle = new Candle
                             {
                                 Pair = key.Split(':')[2],

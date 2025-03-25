@@ -31,7 +31,7 @@
               Margin="10 0 0 0">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width=".3*"/>
+            <ColumnDefinition Width=".28*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -74,6 +74,24 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Content="{Binding BalanceBtc}"
+                VerticalAlignment="Center"/>
+
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                Content="{Binding BalanceXrp}"
+                VerticalAlignment="Center"/>
+
+            <Label
+                Grid.Row="3"
+                Grid.Column="1"
+                Content="{Binding BalanceXmr}"
+                VerticalAlignment="Center"/>
+
+            <Label
+                Grid.Row="4"
+                Grid.Column="1"
+                Content="{Binding BalanceDash}"
                 VerticalAlignment="Center"/>
 
         </Grid>
