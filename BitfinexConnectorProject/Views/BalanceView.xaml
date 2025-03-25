@@ -70,6 +70,11 @@
                 Content="{Binding BalanceUsdt}"
                 VerticalAlignment="Center"/>
 
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Content="{Binding BalanceBtc}"
+                VerticalAlignment="Center"/>
 
         </Grid>
     </Grid>
