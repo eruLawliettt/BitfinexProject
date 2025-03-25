@@ -1,4 +1,5 @@
 ﻿using BitfinexConnectorProject.Models;
+using BitfinexConnectorProject.Models.DTO;
 using RestSharp;
 using System;
 using System.Collections;
@@ -142,7 +143,7 @@ namespace BitfinexConnectorProject.Services
 
         #region Socket
 
-        private readonly ClientWebSocket _ws = new();
+        private ClientWebSocket _ws = new();
         private readonly Uri _webSocketUri = new("wss://api-pub.bitfinex.com/ws/2");
         private readonly Dictionary<string, int> _subscribsions = new();
         private readonly Dictionary<int, string> _channelMap = new();
@@ -153,17 +154,26 @@ namespace BitfinexConnectorProject.Services
 
         public async Task ConnectToWebSocketAsync()
         {
-            if (_ws.State == WebSocketState.Open)
+            if (_ws.State == WebSocketState.Open || _ws.State == WebSocketState.Connecting)
                 return;
 
+            if (_ws.State == WebSocketState.Closed || _ws.State == WebSocketState.Aborted)
+            {
+                _ws.Dispose();
+                _ws = new ClientWebSocket();
+            }
+            
             await _ws.ConnectAsync(_webSocketUri, CancellationToken.None);
             _ = Task.Run(ReceiveMessages); // своего рода костыль, запуск прослушивания, я уверен это можно сделать лучше
+        
+            
         }
         private async Task SendMessage(string message)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(message);
             await _ws.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, CancellationToken.None);
         }
+
         private async Task ReceiveMessages()
         {
             while (_ws.State == WebSocketState.Open)
@@ -286,23 +296,15 @@ namespace BitfinexConnectorProject.Services
                         // если длинна массива 10 - пришел апдейт тикера
                         else if (json[1].ValueKind == JsonValueKind.Array && json[1].GetArrayLength() == 10)
                         {
-                            var ticker = new Ticker
+                            var tickerDTO = new TickerDTO
                             {
+                                Pair = key,
                                 Bid = json[1][0].GetDecimal(),
-                                BidSize = json[1][1].GetDecimal(),
                                 Ask = json[1][2].GetDecimal(),
-                                AskSize = json[1][3].GetDecimal(),
-                                DailyChange = json[1][4].GetDecimal(),
-                                DailyChangeRelative = json[1][5].GetDecimal(),
-                                LastPrice = json[1][6].GetDecimal(),
-                                Volume = json[1][7].GetDecimal(),
-                                HighPrice = json[1][8].GetDecimal(),
-                                LowPrice = json[1][9].GetDecimal()
                             };
 
-                            TickerProcessing?.Invoke(ticker);
+                            TickerDTOProcessing?.Invoke(tickerDTO);
                         }
-
                         // heartbeat ответы игнорируются
                     }
                 }
@@ -344,6 +346,9 @@ namespace BitfinexConnectorProject.Services
             await ConnectToWebSocketAsync();
 
             string key = $"trade:{period}:t{pair}";
+            if (_subscribsions.TryGetValue(key, out int channelId))
+                return;
+
             string message = $"{{\"event\":\"subscribe\", \"channel\":\"candles\", \"key\":\"{key}\"}}";
             await SendMessage(message);
         }
@@ -361,12 +366,12 @@ namespace BitfinexConnectorProject.Services
         }
 
 
-        public event Action<Ticker> TickerProcessing;
+        public event Action<TickerDTO> TickerDTOProcessing;
         public async void SubscribeTickers(string pair)
         {
             await ConnectToWebSocketAsync();
             // + "ticker" является обозначением тикера, если его не будет, пары будут путаться с подписками на трейды
-            if (!_subscribsions.TryGetValue(pair + "ticker", out int channelId)) 
+            if (_subscribsions.TryGetValue(pair + "ticker", out int channelId)) 
                 return;
 
             string message = $"{{ \"event\": \"subscribe\", \"channel\": \"ticker\", \"symbol\": \"{pair}\"}}";

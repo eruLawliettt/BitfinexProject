@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BitfinexConnectorProject.Models.DTO
 {
-    class TickerPairBidAskDTO
+    class TickerDTO
     {
         /// <summary>
         /// Валютная пара
@@ -26,6 +26,6 @@ namespace BitfinexConnectorProject.Models.DTO
         /// <summary>
         /// Нынешний курс валюты
         /// </summary>
-        public decimal BidAskAverage { get; set; }
+        public decimal BidAskAverage => (Bid + Ask) / 2; 
     }
 }

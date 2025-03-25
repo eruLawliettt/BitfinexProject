@@ -11,6 +11,10 @@
       FontSize="24"
       FontFamily="Calibri">
 
+    <Page.DataContext>
+        <vm:BalanceViewModel/>
+    </Page.DataContext>
+    
     <Grid
         Background="AliceBlue">
 
