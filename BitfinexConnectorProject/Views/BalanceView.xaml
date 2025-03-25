@@ -64,8 +64,13 @@
             Content="Balance in DASH:"
             VerticalAlignment="Center"/>
 
-        
-        
-    </Grid>
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                Content="{Binding BalanceUsdt}"
+                VerticalAlignment="Center"/>
+
+
+        </Grid>
     </Grid>
 </Page>
