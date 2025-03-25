@@ -31,70 +31,84 @@
 
         </DataGrid>
 
-        <StackPanel
-        Grid.Column="0"
-        Margin="10 10 5 10"
-        VerticalAlignment="Center">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".2*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-            <Button
-            Height="50"
-            Margin="0 0 0 10"
-            Background="Orange"
-            Opacity=".8"
-            Command="{Binding GetBTCUSDTickerCommand}">
-                <TextBlock
-                Text="Get BTCUSD Ticker"
-                TextWrapping="WrapWithOverflow"
-                TextAlignment="Center"/>
-            </Button>
+            <TextBlock
+               Grid.Row="0"
+               Text="Tickers"
+               Foreground="Black"
+               FontSize="24"
+               FontWeight="Bold"
+               Margin="10 10 0 0"/>
 
-            <Button
-            Height="50"
-            Margin="0 0 0 10"
-            Background="MediumPurple"
-            Command="{Binding GetETHUSDTickerCommand}">
-                <TextBlock
-                Text="Get ETHUSD ticker"
-                TextWrapping="WrapWithOverflow"
-                TextAlignment="Center"/>
-            </Button>
+            <StackPanel
+                Grid.Row="1"
+                Margin="10 10 5 10"
+                VerticalAlignment="Top">
 
-            <Button
+                <Button
+                    Height="50"
+                    Margin="0 0 0 10"
+                    Background="Orange"
+                    Opacity=".8"
+                    Command="{Binding GetBTCUSDTickerCommand}">
+                    <TextBlock
+                        Text="Get BTCUSD Ticker"
+                        TextWrapping="WrapWithOverflow"
+                        TextAlignment="Center"/>
+                </Button>
+
+                <Button
+                    Height="50"
+                    Margin="0 0 0 10"
+                    Background="MediumPurple"
+                    Command="{Binding GetETHUSDTickerCommand}">
+                    <TextBlock
+                        Text="Get ETHUSD ticker"
+                        TextWrapping="WrapWithOverflow"
+                        TextAlignment="Center"/>
+                </Button>
+
+                <Button
             Height="50"
             Margin="0 0 0 10"
             Background="LightSkyBlue"
             Opacity=".8"
             Command="{Binding GetLTCUSDTickerCommand}">
-                <TextBlock
+                    <TextBlock
                 Text="Get LTCUSD ticker"
                 TextWrapping="WrapWithOverflow"
                 TextAlignment="Center"/>
-            </Button>
+                </Button>
 
-            <Button
+                <Button
             Height="50"
             Margin="0 0 0 10"
             Background="MediumPurple"
             Opacity=".8"
             Command="{Binding GetETHBTCTickerCommand}">
-                <TextBlock
+                    <TextBlock
                 Text="Get ETHBTC ticker"
                 TextWrapping="WrapWithOverflow"
                 TextAlignment="Center"/>
-            </Button>
+                </Button>
 
-            <Button
+                <Button
             Height="50"
             Margin="0 0 0 10"
             Background="LightSkyBlue"
             Command="{Binding GetLTCBTCTickerCommand}">
-                <TextBlock
+                    <TextBlock
                 Text="Get LTCBTC ticker"
                 TextWrapping="WrapWithOverflow"
                 TextAlignment="Center"/>
-            </Button>
+                </Button>
 
-        </StackPanel>
-
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -31,70 +31,85 @@
 
         </DataGrid>
 
-        <StackPanel
-            Grid.Column="0"
-            Margin="10 10 5 10"
-            VerticalAlignment="Center">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".2*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-            <Button
+            <TextBlock
+                Grid.Row="0"
+                Text="TRADES"
+                Foreground="Black"
+                FontSize="24"
+                FontWeight="Bold"
+                Margin="10 10 0 0"/>
+
+            <StackPanel
+            Grid.Row="1"
+            Margin="10 10 5 10"
+            VerticalAlignment="Top">
+
+                <Button
                 Height="50"
                 Margin="0 0 0 10"
                 Background="Orange"
                 Opacity=".8"
                 Command="{Binding Get10LastBTCUSDTradesCommand}">
-                <TextBlock
+                    <TextBlock
                     Text="Get 10 last BTCUSD tarades"
                     TextWrapping="WrapWithOverflow"
                     TextAlignment="Center"/>
-            </Button>
+                </Button>
 
-            <Button
+                <Button
                 Height="50"
                 Margin="0 0 0 10"
                 Background="MediumPurple"
                 Command="{Binding Get10LastETHUSDTradesCommand}">
-                <TextBlock
+                    <TextBlock
                     Text="Get 10 last ETHUSD tarades"
                     TextWrapping="WrapWithOverflow"
                     TextAlignment="Center"/>
-            </Button>
+                </Button>
 
-            <Button
+                <Button
                 Height="50"
                 Margin="0 0 0 10"
                 Background="Orange"
                 Opacity=".8"
                 Command="{Binding Get50LastBTCUSDTradesCommand}">
-                <TextBlock
+                    <TextBlock
                     Text="Get 50 last BTCUSD tarades"
                     TextWrapping="WrapWithOverflow"
                     TextAlignment="Center"/>
-            </Button>
+                </Button>
 
-            <Button
+                <Button
                 Height="50"
                 Margin="0 0 0 10"
                 Background="Orange"
                 Opacity=".8"
                 Command="{Binding GetBTCUSDTradesDataCommand}">
-                <TextBlock
+                    <TextBlock
                     Text="Get all last BTCUSD tarades (max 10000)"
                     TextWrapping="WrapWithOverflow"
                     TextAlignment="Center"/>
-            </Button>
+                </Button>
 
-            <Button
+                <Button
                 Height="50"
                 Margin="0 0 0 10"
                 Background="MediumPurple"
                 Command="{Binding GetETHUSDTradesDataCommand}">
-                <TextBlock
+                    <TextBlock
                     Text="Get all last ETHUSD tarades (max 10000)"
                     TextWrapping="WrapWithOverflow"
                     TextAlignment="Center"/>
-            </Button>
+                </Button>
 
-        </StackPanel>
-        
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </Page>

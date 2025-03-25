@@ -33,7 +33,7 @@
             HorizontalAlignment="Center">
 
             <Border 
-                Width="580"
+                Width="490"
                 Background="#ff6a32"
                 Opacity=".8">
 
@@ -41,20 +41,20 @@
                     Orientation="Horizontal">
 
                     <Button
-                        Width="180"
+                        Width="150"
                         Opacity=".6"
                         Margin="10 0 5 0"
                         Content="REST Trades"
                         Command="{Binding RestTradesViewCommand}"/>
 
                     <Button
-                        Width="180"
+                        Width="150"
                         Opacity=".6"
                         Margin="5 0 5 0"
                         Content="REST Candles"
                         Command="{Binding RestCandlesViewCommand}"/>
                     <Button
-                        Width="180"
+                        Width="150"
                         Opacity=".6"
                         Margin="5 0 5 0"
                         Content="REST Tickers"
@@ -65,26 +65,36 @@
             <Border
                 Background="#9370DB "
                 Opacity=".8"
-                Width="390">
+                Width="330">
 
                 <StackPanel
                     Orientation="Horizontal">
 
                     <Button
-                        Width="180"
+                        Width="150"
                         Opacity=".6"
                         Margin="10 0 5 0"
                         Content="WebSocket Trades"
                         Command="{Binding WebSocketTradesViewCommand}"/>
 
-                   <Button
-                       Width="180"
+                    <Button
+                       Width="150"
                        Opacity=".6"
                        Margin="5 0 5 0"
                        Content="WebSocket Candles"
                        Command="{Binding WebSocketCandlesViewCommand}"/>
                 </StackPanel>
 
+            </Border>
+            <Border
+                Background="DarkBlue"
+                Opacity=".8">
+                <Button
+                    Width="100"
+                    Opacity=".6"
+                    Margin="10 0 10 0"
+                    Content="Balance"
+                    Command="{Binding }"/>
             </Border>
             
             

@@ -36,37 +36,38 @@
 
 
             <StackPanel Grid.Row="1"
-                VerticalAlignment="Top">
+                VerticalAlignment="Top"
+                Margin="10 10 5 10">
             <Button
                 Content="BTC-USD Subscribe"
-                Height="60"
+                Height="50"
                 Background="Orange"
                 Opacity=".8"
-                Margin="5 0 0 5"
+                Margin="0 0 0 5"
                 Command="{Binding SubscribeToBTCUSDCommand}"/>
             
             <Button
                 Content="BTC-USD Unsubscribe"
-                Height="60"
+                Height="50"
                 Background="Orange"
                 Opacity=".8"
-                Margin="5 0 0 0"
+                Margin="0 0 0 0"
                 Command="{Binding UnsubscribeToBTCUSDCommand}"/>
 
             <Button
                 Content="ETH-USD Subscribe"
-                Height="60"
+                Height="50"
                 Background="MediumPurple"
                 Opacity=".8"
-                Margin="5 5 0 5"
+                Margin="0 5 0 5"
                 Command="{Binding SubscribeToETHUSDCommand}"/>
 
             <Button
                 Content="ETH-USD Unsubscribe"
-                Height="60"
+                Height="50"
                 Background="MediumPurple"
                 Opacity=".8"
-                Margin="5 0 0 0"
+                Margin="0 0 0 0"
                 Command="{Binding UnsubscribeToETHUSDCommand}"/>
 
         </StackPanel>

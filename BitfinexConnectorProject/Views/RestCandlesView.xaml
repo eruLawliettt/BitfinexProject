@@ -32,73 +32,87 @@
 
         </DataGrid>
 
-        <StackPanel
-         Grid.Column="0"
-         Margin="10 10 5 10"
-         VerticalAlignment="Center">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".2*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-            <Button
-             Height="70"
+            <TextBlock
+        Grid.Row="0"
+        Text="CANDLES"
+        Foreground="Black"
+        FontSize="24"
+        FontWeight="Bold"
+        Margin="10 10 0 0"/>
+
+            <StackPanel
+         Grid.Row="1"
+         Margin="10 10 5 10"
+         VerticalAlignment="Top">
+
+                <Button
+             Height="50"
              Margin="0 0 0 10"
              Background="Orange"
              Opacity=".8"
              Command="{Binding GetLastBTCUSDCandlesInPeriod1mCommand}">
-                <TextBlock
+                    <TextBlock
                  Text="Get all last BTCUSD candles (period: 1m)"
                  TextWrapping="WrapWithOverflow"
                  TextAlignment="Center"/>
-            </Button>
+                </Button>
 
-            <Button
-             Height="70"
+                <Button
+             Height="50"
              Margin="0 0 0 10"
              Background="MediumPurple"
              Command="{Binding GetLastETHUSDCandlesInPeriod15mCommand}">
-                <TextBlock
+                    <TextBlock
                  Text="Get all last ETHUSD candles (period: 15m)"
                  TextWrapping="WrapWithOverflow"
                  TextAlignment="Left"/>
-            </Button>
+                </Button>
 
-            <Button
+                <Button
              Height="70"
              Margin="0 0 0 10"
              Background="Orange"
              Opacity=".8"
              Command="{Binding Get5LastBTCUSDCandlesInPeriod15mFromToCommand}">
-                <TextBlock
+                    <TextBlock
                  Text="Get 5 BTCUSD candles 
                     from 6:07 to 9:02 (period 15m)"
   
                  TextWrapping="WrapWithOverflow"
                  TextAlignment="Center"/>
-            </Button>
+                </Button>
 
-            <Button
-             Height="70"
+                <Button
+             Height="50"
              Margin="0 0 0 10"
              Background="Orange"
              Opacity=".8"
              Command="{Binding GetLastBTCUSDCandlesInPeriod1DCommand}">
-                <TextBlock
+                    <TextBlock
                  Text="Get last BTCUSD tarades (period 1Day)"
                  TextWrapping="WrapWithOverflow"
                  TextAlignment="Center"/>
-            </Button>
+                </Button>
 
-            <Button
+                <Button
              Height="70"
              Margin="0 0 0 10"
              Background="MediumPurple"
              Command="{Binding GetLastETHUSDCandlesInPeriod1DFrom1MarchCommand}">
-                <TextBlock
+                    <TextBlock
                  Text="Get all last ETHUSD tarades from 01 March 2025 
                     (period 1D)"
                  TextWrapping="WrapWithOverflow"
                  TextAlignment="Center"/>
-            </Button>
+                </Button>
 
-        </StackPanel>
-
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
