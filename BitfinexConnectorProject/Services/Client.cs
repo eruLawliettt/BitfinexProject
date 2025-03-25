@@ -260,7 +260,7 @@ namespace BitfinexConnectorProject.Services
                         {
                             // скип свечей которые ещё не завершены
                             long currentTimeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                            if (json[1][0].GetInt64() >= currentTimeStamp - 60_000)  
+                            if (json[1][0].GetInt64() >= currentTimeStamp - 60_000) // тут хардкод на минутный интервал, позже нужно придумать более гибкую реализацию  
                                 return;
                             
                             var candle = new Candle

@@ -52,28 +52,12 @@
                 Command="{Binding UnsubscribeToBTCUSD1mCommand}"/>
 
             <Button
-                Content="BTC-USD(15m) Sub"
-                Height="40"
-                Background="Orange"
-                Opacity=".8"
-                Margin="5 0 0 5"
-                Command="{Binding }"/>
-
-            <Button
-                Content="BTC-USD(15m) Unsub"
-                Height="40"
-                Background="Orange"
-                Opacity=".8"
-                Margin="5 0 0 0"
-                Command="{Binding }"/>
-
-            <Button
                 Content="ETH-USD(1m) Sub"
                 Height="40"
                 Background="MediumPurple"
                 Opacity=".8"
-                Margin="5 5 0 5"
-                Command="{Binding }"/>
+                Margin="5 0 0 5"
+                Command="{Binding SubscribeToETHUSD1mCommand}"/>
 
             <Button
                 Content="ETH-USD(1m) Unsub"
@@ -81,7 +65,7 @@
                 Background="MediumPurple"
                 Opacity=".8"
                 Margin="5 0 0 0"
-                Command="{Binding }"/>
+                Command="{Binding UnsubscribeToETHUSD1mCommand}"/>
 
         </StackPanel>
 

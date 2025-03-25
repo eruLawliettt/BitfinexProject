@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|c:\\users\\coffe\\source\\repos\\bitfinexconnectorproject\\bitfinexconnectorproject\\viewmodels\\websocketcandlesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|solutionrelative:bitfinexconnectorproject\\viewmodels\\websocketcandlesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|c:\\users\\coffe\\source\\repos\\bitfinexconnectorproject\\bitfinexconnectorproject\\views\\restcandlesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|solutionrelative:bitfinexconnectorproject\\views\\restcandlesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -31,6 +35,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "WebSocketCandlesViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\WebSocketCandlesViewModel.cs",
+              "RelativeDocumentMoniker": "BitfinexConnectorProject\\ViewModels\\WebSocketCandlesViewModel.cs",
+              "ToolTip": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\WebSocketCandlesViewModel.cs",
+              "RelativeToolTip": "BitfinexConnectorProject\\ViewModels\\WebSocketCandlesViewModel.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAuwCgAAABRAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T08:19:10.342Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "RestCandlesView.xaml",
               "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\Views\\RestCandlesView.xaml",
               "RelativeDocumentMoniker": "BitfinexConnectorProject\\Views\\RestCandlesView.xaml",
@@ -42,7 +59,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\MainWindow.xaml",
               "RelativeDocumentMoniker": "BitfinexConnectorProject\\MainWindow.xaml",
@@ -53,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Client.cs",
               "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\Services\\Client.cs",
               "RelativeDocumentMoniker": "BitfinexConnectorProject\\Services\\Client.cs",

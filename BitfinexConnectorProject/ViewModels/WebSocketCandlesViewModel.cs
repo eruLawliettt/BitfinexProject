@@ -22,11 +22,8 @@ namespace BitfinexConnectorProject.ViewModels
             set => Set(ref _candles, value, nameof(Candles));
         }
 
-       
         public ICommand SubscribeToBTCUSD1mCommand { get; set; }
         public ICommand UnsubscribeToBTCUSD1mCommand { get; set; }
-        public ICommand SubscribeToBTCUSD15mCommand { get; set; }
-        public ICommand UnsubscribeToBTCUSD15mCommand { get; set; }
         public ICommand SubscribeToETHUSD1mCommand { get; set; }
         public ICommand UnsubscribeToETHUSD1mCommand { get; set; }
 
@@ -36,8 +33,6 @@ namespace BitfinexConnectorProject.ViewModels
             _client.CandleSeriesProcessing += AddCandle;
             SubscribeToBTCUSD1mCommand = new RelayCommand(x => Subscribe("BTCUSD", "1m"));
             UnsubscribeToBTCUSD1mCommand = new RelayCommand(x => Unsubscribe("BTCUSD", "1m"));
-            SubscribeToBTCUSD15mCommand = new RelayCommand(x => Subscribe("BTCUSD", "15m"));
-            UnsubscribeToBTCUSD15mCommand = new RelayCommand(x => Unsubscribe("BTCUSD", "15m"));
             SubscribeToETHUSD1mCommand = new RelayCommand(x => Subscribe("ETHUSD", "1m"));
             UnsubscribeToETHUSD1mCommand = new RelayCommand(x => Unsubscribe("ETHUSD", "1m"));
         }

@@ -16,5 +16,5 @@ C:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Ap
 199-1553471712
 MainWindow.xaml;Views\RestCandlesView.xaml;Views\RestTickersView.xaml;Views\RestTradesView.xaml;Views\WebSocketCandlesView.xaml;Views\WebSocketTradesView.xaml;
 
-True
+False
 
