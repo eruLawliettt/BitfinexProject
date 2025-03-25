@@ -1,0 +1,104 @@
+﻿<Page x:Class="BitfinexConnectorProject.Views.RestCandlesView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BitfinexConnectorProject.Views"
+      xmlns:vm="clr-namespace:BitfinexConnectorProject.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" 
+      d:DesignWidth="800"
+      Title="RestCandlesView">
+    
+    <Page.DataContext>
+        <vm:RestCandlesViewModel/>
+    </Page.DataContext>
+
+    <Grid
+        Background="#ff6a32">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid
+         IsReadOnly="True"
+         Grid.Column="1"
+         Margin="5 10 10 10"
+         ItemsSource="{Binding Candles, 
+         UpdateSourceTrigger=PropertyChanged}"
+         AutoGenerateColumns="True">
+
+        </DataGrid>
+
+        <StackPanel
+         Grid.Column="0"
+         Margin="10 10 5 10"
+         VerticalAlignment="Center">
+
+            <Button
+             Height="70"
+             Margin="0 0 0 10"
+             Background="Orange"
+             Opacity=".8"
+             Command="{Binding GetLastBTCUSDCandlesInPeriod1mCommand}">
+                <TextBlock
+                 Text="Get all last BTCUSD candles (period: 1m)"
+                 TextWrapping="WrapWithOverflow"
+                 TextAlignment="Center"/>
+            </Button>
+
+            <Button
+             Height="70"
+             Margin="0 0 0 10"
+             Background="MediumPurple"
+             Command="{Binding GetLastETHUSDCandlesInPeriod15mCommand}">
+                <TextBlock
+                 Text="Get all last ETHUSD candles (period: 15m)"
+                 TextWrapping="WrapWithOverflow"
+                 TextAlignment="Left"/>
+            </Button>
+
+            <Button
+             Height="70"
+             Margin="0 0 0 10"
+             Background="Orange"
+             Opacity=".8"
+             Command="{Binding Get5LastBTCUSDCandlesInPeriod15mFromToCommand}">
+                <TextBlock
+                 Text="Get 5 BTCUSD candles 
+                    from 6:07 to 9:02 (period 15m)"
+  
+                 TextWrapping="WrapWithOverflow"
+                 TextAlignment="Center"/>
+            </Button>
+
+            <Button
+             Height="70"
+             Margin="0 0 0 10"
+             Background="Orange"
+             Opacity=".8"
+             Command="{Binding GetLastBTCUSDCandlesInPeriod1DCommand}">
+                <TextBlock
+                 Text="Get last BTCUSD tarades (period 1Day)"
+                 TextWrapping="WrapWithOverflow"
+                 TextAlignment="Center"/>
+            </Button>
+
+            <Button
+             Height="70"
+             Margin="0 0 0 10"
+             Background="MediumPurple"
+             Command="{Binding GetLastETHUSDCandlesInPeriod1DFrom1MarchCommand}">
+                <TextBlock
+                 Text="Get all last ETHUSD tarades from 01 March 2025 
+                    (period 1D)"
+                 TextWrapping="WrapWithOverflow"
+                 TextAlignment="Center"/>
+            </Button>
+
+        </StackPanel>
+
+    </Grid>
+</Page>

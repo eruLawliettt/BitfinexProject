@@ -1,0 +1,99 @@
+﻿<Window x:Class="BitfinexConnectorProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BitfinexConnectorProject"
+        xmlns:vm="clr-namespace:BitfinexConnectorProject.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="800" 
+        Width="1000"
+        ResizeMode="CanMinimize"
+        Background="DarkGray"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Calibri"
+        FontSize="18">
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Row="0"
+            Orientation="Horizontal"        
+            Margin="10"
+            HorizontalAlignment="Center">
+
+            <Border 
+                Width="580"
+                Background="#ff6a32"
+                Opacity=".8">
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <Button
+                        Width="180"
+                        Opacity=".6"
+                        Margin="10 0 5 0"
+                        Content="REST Trades"
+                        Command="{Binding RestTradesViewCommand}"/>
+
+                    <Button
+                        Width="180"
+                        Opacity=".6"
+                        Margin="5 0 5 0"
+                        Content="REST Candles"
+                        Command="{Binding RestCandlesViewCommand}"/>
+                    <Button
+                        Width="180"
+                        Opacity=".6"
+                        Margin="5 0 5 0"
+                        Content="REST Tickers"
+                        Command="{Binding RestTickersViewCommand}"/>
+                </StackPanel>
+            </Border>
+
+            <Border
+                Background="#9370DB "
+                Opacity=".8"
+                Width="390">
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <Button
+                        Width="180"
+                        Opacity=".6"
+                        Margin="10 0 5 0"
+                        Content="WebSocket Trades"
+                        Command="{Binding WebSocketTradesViewCommand}"/>
+
+                   <Button
+                       Width="180"
+                       Opacity=".6"
+                       Margin="5 0 5 0"
+                       Content="WebSocket Candles"
+                       Command="{Binding WebSocketCandlesViewCommand}"/>
+                </StackPanel>
+
+            </Border>
+            
+            
+        </StackPanel>
+
+        <Frame Grid.Row="1"
+            Margin="0"
+            Content="{Binding CurrentView}"
+            NavigationUIVisibility="Hidden"/>
+
+    </Grid>
+</Window>
