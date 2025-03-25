@@ -33,3 +33,5 @@ C:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\ob
 C:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\obj\Debug\net8.0-windows\Views\WebSocketCandlesView.g.cs
 C:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\obj\Debug\net8.0-windows\Views\WebSocketCandlesView.baml
 C:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\obj\Debug\net8.0-windows\BitfinexConnectorProject.sourcelink.json
+C:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\obj\Debug\net8.0-windows\Views\BalanceView.g.cs
+C:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\obj\Debug\net8.0-windows\Views\BalanceView.baml

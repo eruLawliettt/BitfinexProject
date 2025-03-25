@@ -25,12 +25,14 @@ namespace BitfinexConnectorProject.ViewModels
         private RestTickersView _restTickersView = new();
         private WebSocketTradesView _webSocketTradesView = new();
         private WebSocketCandlesView _webSocketCandlesView = new();
+        private BalanceView _balanceView = new();
 
         public ICommand RestTradesViewCommand { get; }
         public ICommand RestCandlesViewCommand { get; }
         public ICommand RestTickersViewCommand { get; }
         public ICommand WebSocketTradesViewCommand { get; }
         public ICommand WebSocketCandlesViewCommand { get; }
+        public ICommand BalanceViewCommand { get; }
 
         public MainWindowViewModel()
         {
@@ -39,6 +41,7 @@ namespace BitfinexConnectorProject.ViewModels
             RestTickersViewCommand = new RelayCommand(x => ChangeViewToRestTickers());
             WebSocketTradesViewCommand = new RelayCommand(x => ChangeViewToWebSocketTrades());
             WebSocketCandlesViewCommand = new RelayCommand(x => ChangeViewToWebSocketCandles());
+            BalanceViewCommand = new RelayCommand(x => ChangeViewToBalance());
         }
 
         private void ChangeViewToRestTrades()
@@ -60,6 +63,11 @@ namespace BitfinexConnectorProject.ViewModels
         private void ChangeViewToWebSocketCandles()
         {
             CurrentView = _webSocketCandlesView;
+        }
+
+        private void ChangeViewToBalance()
+        {
+            CurrentView = _balanceView;
         }
 
     }

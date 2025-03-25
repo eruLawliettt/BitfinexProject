@@ -206,7 +206,7 @@ namespace BitfinexConnectorProject.Services
                     {
                         string channel = json.GetProperty("channel").GetString();
                         int chanId = json.GetProperty("chanId").GetInt32();
-
+                        // по хорошему лучше заменить на switch, #TODO
                         if (channel == "trades")
                         {
                             string key = json.GetProperty("symbol").GetString(); // если это трейд, key = symbol
@@ -219,6 +219,12 @@ namespace BitfinexConnectorProject.Services
                             _subscribsions[key] = chanId;
                             _channelMap[chanId] = key;
                         }
+                        else if (channel == "ticker")
+                        {
+                            string key = json.GetProperty("symbol").GetString() + "ticker"; // если это тикер, key = symbol + "ticker"
+                            _subscribsions[key] = chanId;
+                            _channelMap[chanId] = key;
+                        };
                     }
                     else if (eventName == "unsubscribed")
                     {
@@ -230,7 +236,7 @@ namespace BitfinexConnectorProject.Services
                         }
                     }
                 }
-                // если после всех проверок массив добрался сюда - значит это либо трейд либо свеча
+                // если после всех проверок массив добрался сюда - значит это либо трейд либо свеча либо тикер
                 else if (json.ValueKind == JsonValueKind.Array)
                 {
                     int chanId = json[0].GetInt32();
@@ -255,7 +261,7 @@ namespace BitfinexConnectorProject.Services
                             else
                                 NewSellTrade?.Invoke(trade);
                         }
-                        // Trade Update нет, зато второй член массива - массив длинной 6, значит пришла свеча
+                        // Trade Update нет, зато второй член массива - массив длинной или 6 или 10, если 6 - пришла свеча
                         else if (json[1].ValueKind == JsonValueKind.Array && json[1].GetArrayLength() == 6)
                         {
                             // скип свечей которые ещё не завершены
@@ -265,7 +271,7 @@ namespace BitfinexConnectorProject.Services
                             
                             var candle = new Candle
                             {
-                                Pair = key.Split(':')[2], // trade:1m:tBTCUSD
+                                Pair = key.Split(':')[2],
                                 OpenPrice = json[1][1].GetDecimal(),
                                 HighPrice = json[1][3].GetDecimal(),
                                 LowPrice = json[1][4].GetDecimal(),
@@ -277,6 +283,26 @@ namespace BitfinexConnectorProject.Services
 
                             CandleSeriesProcessing?.Invoke(candle);
                         }
+                        // если длинна массива 10 - пришел апдейт тикера
+                        else if (json[1].ValueKind == JsonValueKind.Array && json[1].GetArrayLength() == 10)
+                        {
+                            var ticker = new Ticker
+                            {
+                                Bid = json[1][0].GetDecimal(),
+                                BidSize = json[1][1].GetDecimal(),
+                                Ask = json[1][2].GetDecimal(),
+                                AskSize = json[1][3].GetDecimal(),
+                                DailyChange = json[1][4].GetDecimal(),
+                                DailyChangeRelative = json[1][5].GetDecimal(),
+                                LastPrice = json[1][6].GetDecimal(),
+                                Volume = json[1][7].GetDecimal(),
+                                HighPrice = json[1][8].GetDecimal(),
+                                LowPrice = json[1][9].GetDecimal()
+                            };
+
+                            TickerProcessing?.Invoke(ticker);
+                        }
+
                         // heartbeat ответы игнорируются
                     }
                 }
@@ -287,7 +313,7 @@ namespace BitfinexConnectorProject.Services
             }
         }
 
-        
+        // maxCount я бы тут убрал, т.к. все подобные описаны непосредственно во ViewModel которая использует этот метод
         public async void SubscribeTrades(string pair, int maxCount = 100)
         {
             await ConnectToWebSocketAsync();
@@ -309,9 +335,7 @@ namespace BitfinexConnectorProject.Services
             _subscribsions.Remove(pair);
             _channelMap.Remove(channelId);
             
-        }
-
-        //-------------------------------------------------------------------------------------------------------------
+        }   
 
 
         public event Action<Candle> CandleSeriesProcessing;
@@ -337,6 +361,28 @@ namespace BitfinexConnectorProject.Services
         }
 
 
+        public event Action<Ticker> TickerProcessing;
+        public async void SubscribeTickers(string pair)
+        {
+            await ConnectToWebSocketAsync();
+            // + "ticker" является обозначением тикера, если его не будет, пары будут путаться с подписками на трейды
+            if (!_subscribsions.TryGetValue(pair + "ticker", out int channelId)) 
+                return;
+
+            string message = $"{{ \"event\": \"subscribe\", \"channel\": \"ticker\", \"symbol\": \"{pair}\"}}";
+            await SendMessage(message);
+        }
+        public async void UnsubscribeTickers(string pair)
+        {
+            if (!_subscribsions.TryGetValue(pair + "ticker", out int channelId))
+                return;
+
+            string message = $"{{\"event\":\"unsubscribe\", \"chanId\":{channelId}}}";
+            await SendMessage(message);
+
+            _subscribsions.Remove(pair + "ticker");
+            _channelMap.Remove(channelId);
+        }
 
         #endregion
     }

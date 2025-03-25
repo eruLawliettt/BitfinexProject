@@ -94,7 +94,7 @@
                     Opacity=".6"
                     Margin="10 0 10 0"
                     Content="Balance"
-                    Command="{Binding }"/>
+                    Command="{Binding BalanceViewCommand}"/>
             </Border>
             
             
