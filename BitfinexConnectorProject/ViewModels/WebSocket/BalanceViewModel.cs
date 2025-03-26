@@ -19,7 +19,7 @@ namespace BitfinexConnectorProject.ViewModels.WebSocket
         }
 
         #region Balance props and fields
-
+        // в XAML нельзя достучаться до содержимого словаря, поэтому тестовый баланс в UI я написал от руки
         public Dictionary<string, decimal> TestBalance { get; set; } = new() 
             { { "BTC", 1M }, { "XRP", 15_000M }, { "XMR", 50M }, { "DASH", 30M } };
 
@@ -50,7 +50,7 @@ namespace BitfinexConnectorProject.ViewModels.WebSocket
             get { return _balanceXmr; }
             set => Set(ref _balanceXmr, value, nameof(BalanceXmr));
         }
-
+        
         private decimal _balanceDash;
         public decimal BalanceDash
         {

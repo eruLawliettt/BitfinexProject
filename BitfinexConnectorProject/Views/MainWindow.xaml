@@ -87,8 +87,8 @@
 
             </Border>
             <Border
-                Background="DarkBlue"
-                Opacity=".8">
+                Background="#011f4b"
+                Opacity="1">
                 <Button
                     Width="100"
                     Opacity=".6"

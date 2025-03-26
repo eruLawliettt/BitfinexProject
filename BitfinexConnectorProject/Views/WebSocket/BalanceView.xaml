@@ -12,19 +12,36 @@
       FontFamily="Calibri">
 
     <Grid
-        Background="AliceBlue">
+        Background="#011f4b">
 
         <Grid.RowDefinitions>
             <RowDefinition Height=".2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label
-            Content="Total coins: 1 BTC, 15000 XRP, 50 XMR, 30 DASH"
-            Margin="10 10 0 0"/>
+        <StackPanel
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            Background="#03396c"
+            Margin="10 0 10 0">
+
+            <Label
+                Content="BTC: 1"/>
+            
+            <Label
+                Content="XRP: 15000"/>
+            
+            <Label
+                Content="XMR: 50"/>
+            
+            <Label
+                Content="DASH: 30"/>
+            
+        </StackPanel>
 
         <Grid Grid.Row="1"
-              Margin="10 0 0 0">
+              Margin="10"
+              Background="#6497b1">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width=".28*"/>
