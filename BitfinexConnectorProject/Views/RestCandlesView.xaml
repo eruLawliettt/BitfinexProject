@@ -9,10 +9,6 @@
       d:DesignHeight="450" 
       d:DesignWidth="800"
       Title="RestCandlesView">
-    
-    <Page.DataContext>
-        <vm:RestCandlesViewModel/>
-    </Page.DataContext>
 
     <Grid
         Background="#ff6a32">

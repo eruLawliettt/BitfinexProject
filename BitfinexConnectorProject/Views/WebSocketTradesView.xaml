@@ -9,10 +9,6 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="WebSocketTradesView">
 
-    <Page.DataContext>
-        <vm:WebSocketTradesViewModel/>
-    </Page.DataContext>
-
     <Grid
         Background="#B39AE5">
         <Grid.ColumnDefinitions>

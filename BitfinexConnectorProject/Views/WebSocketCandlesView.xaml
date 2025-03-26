@@ -9,10 +9,6 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="WebSocketCandlesView">
 
-    <Page.DataContext>
-        <vm:WebSocketCandlesViewModel/>
-    </Page.DataContext>
-
     <Grid
         Background="#B39AE5">
         <Grid.ColumnDefinitions>

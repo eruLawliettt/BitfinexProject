@@ -9,10 +9,6 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RestTradesView">
 
-    <Page.DataContext>
-        <vm:RestTradesViewModel/>
-    </Page.DataContext>
-
     <Grid
          Background="#ff6a32">
 

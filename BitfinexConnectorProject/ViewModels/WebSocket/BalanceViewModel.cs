@@ -1,20 +1,12 @@
-﻿using BitfinexConnectorProject.Models;
-using BitfinexConnectorProject.Models.DTO;
+﻿using BitfinexConnectorProject.Models.DTO;
 using BitfinexConnectorProject.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BitfinexConnectorProject.ViewModels
+namespace BitfinexConnectorProject.ViewModels.WebSocket
 {
     class BalanceViewModel : ViewModelBase
     {
-
-        private readonly Client _client = new();
-
+        private Client _client;
         private const decimal TickersCount = 8;
 
         private event Action RecalculationBalance;
@@ -26,7 +18,10 @@ namespace BitfinexConnectorProject.ViewModels
             set => Set(ref _tickers, value, nameof(Tickers));
         }
 
-        public Dictionary<string, decimal> TestBalance { get; set; } = new () { {"BTC", 1M }, { "XRP", 15_000M }, { "XMR", 50M }, { "DASH", 30M } };
+        #region Balance props and fields
+
+        public Dictionary<string, decimal> TestBalance { get; set; } = new() 
+            { { "BTC", 1M }, { "XRP", 15_000M }, { "XMR", 50M }, { "DASH", 30M } };
 
         private decimal _balanceUsdt;
         public decimal BalanceUsdt
@@ -63,22 +58,76 @@ namespace BitfinexConnectorProject.ViewModels
             set => Set(ref _balanceDash, value, nameof(BalanceDash));
         }
 
-        public BalanceViewModel()
+        #endregion
+
+        public BalanceViewModel(Client client)
         {
+            _client = client;
+            _client.TickerDTOProcessing += AddTickerDTO;
+
             RecalculationBalance += CalculateUSDTBalance;
             RecalculationBalance += CalculateBTCBalance;
-            _client.TickerDTOProcessing += AddTickerDTO;
 
             Tickers = [];
 
             _ = InitializeSubscriptionsAsync();
         }
 
+        private async Task InitializeSubscriptionsAsync()
+        {
+            await _client.ConnectToWebSocketAsync();
+            await Task.Delay(100);
+
+            if (_client.IsConnected)
+            {
+                Subscribe("tBTCUST");
+                Subscribe("tXRPUST");
+                Subscribe("tXMRUST");
+                Subscribe("tDSHUSD");
+                Subscribe("tUSTUSD");
+                Subscribe("tXRPBTC");
+                Subscribe("tXMRBTC");
+                Subscribe("tDSHBTC");
+
+                // нужно дождаться пока все тикеры не прийдут, только потом производить первый расчёт
+                await WaitForTickersAsync();
+
+                CalculateUSDTBalance();
+                CalculateBTCBalance();
+            }
+            else
+            {
+                await InitializeSubscriptionsAsync();
+            }
+        }
+        private async Task WaitForTickersAsync()
+        {
+            while (Tickers.Count < TickersCount)
+            {
+                await Task.Delay(100);
+            }
+        }
+        private void AddTickerDTO(TickerDTO tickerDTO)
+        {
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                if (Tickers.Any(t => t.Pair == tickerDTO.Pair))
+                {
+                    var ticker = Tickers.First(t => t.Pair.Equals(tickerDTO.Pair));
+                    Tickers.Remove(ticker);
+                    Tickers.Add(tickerDTO);
+                    RecalculationBalance?.Invoke();
+                }
+                else
+                    Tickers.Add(tickerDTO);
+            });
+        }
+
         private void CalculateUSDTBalance()
         {
             decimal tempBalance = 0M;
 
-            var tempTicker = Tickers.First(t => t.Pair == "tBTCUSTticker");            
+            var tempTicker = Tickers.First(t => t.Pair == "tBTCUSTticker");
             tempBalance += TestBalance["BTC"] * tempTicker.BidAskAverage;
 
             tempTicker = Tickers.First(t => t.Pair == "tXRPUSTticker");
@@ -112,6 +161,8 @@ namespace BitfinexConnectorProject.ViewModels
 
             BalanceBtc = tempBalance;
 
+            // было принято решение считать XRP, XMR и DASH относительно BalanceBtc,
+            // т.к. нужных тикеров на бирже нет, по крайней мере API их не предоставляет
             CalculateXRPByBTCBalance();
             CalculateXMRByBTCBalance();
             CalculateDASHByBTCBalance();
@@ -144,68 +195,8 @@ namespace BitfinexConnectorProject.ViewModels
             BalanceDash = tempBalance;
         }
 
-
-        private async Task WaitForTickersAsync()
-        {
-            while (Tickers.Count < TickersCount)
-            {
-                await Task.Delay(100);
-            }
-        }
-
-        private void AddTickerDTO(TickerDTO tickerDTO)
-        {
-            App.Current.Dispatcher.Invoke(() =>
-            {
-                if (Tickers.Any(t => t.Pair == tickerDTO.Pair))
-                {
-                    var ticker = Tickers.First(t => t.Pair.Equals(tickerDTO.Pair));
-                    Tickers.Remove(ticker);
-                    Tickers.Add(tickerDTO);
-                    RecalculationBalance?.Invoke();
-                }
-                else
-                    Tickers.Add(tickerDTO);
-            });
-        }
-
-
-        private async Task InitializeSubscriptionsAsync()
-        {
-            await Task.Delay(100);
-            await _client.ConnectToWebSocketAsync();
-
-            if (_client.IsConnected)
-            {
-                Subscribe("tBTCUST");
-                Subscribe("tXRPUST");
-                Subscribe("tXMRUST");
-                Subscribe("tDSHUSD");
-                Subscribe("tUSTUSD");
-                Subscribe("tXRPBTC");
-                Subscribe("tXMRBTC");
-                Subscribe("tDSHBTC");
-
-                await WaitForTickersAsync();
-
-                CalculateUSDTBalance();
-                CalculateBTCBalance();
-            }
-            else
-            {
-                await InitializeSubscriptionsAsync();
-            }
-        }
-
-        // после тестов удалить !!!
-        /*private async Task SubscribeAsync(string pair)
-        {
-            await Task.Delay(100);
-            Subscribe(pair);
-        }*/
-
         private void Subscribe(string pair) => _client.SubscribeTickers(pair);
-        private void Unsubscribe(string pair) => _client.UnsubscribeTickers(pair);
+        private void Unsubscribe(string pair) => _client.UnsubscribeTickers(pair); // в данном случае не используется, возможно есть смысл вызывать в деструкторе || #TODO: разобраться
 
     }
 }

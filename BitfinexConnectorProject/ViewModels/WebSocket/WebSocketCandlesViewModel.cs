@@ -1,21 +1,17 @@
 ﻿using BitfinexConnectorProject.Models;
 using BitfinexConnectorProject.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace BitfinexConnectorProject.ViewModels
+namespace BitfinexConnectorProject.ViewModels.WebSocket
 {
     internal class WebSocketCandlesViewModel : ViewModelBase
     {
-        private readonly Client _client = new();
+        private Client _client;
+
+        private const decimal CandlesMaxCount = 100;
 
         private ObservableCollection<Candle> _candles;
-
         public ObservableCollection<Candle> Candles
         {
             get { return _candles; }
@@ -27,24 +23,26 @@ namespace BitfinexConnectorProject.ViewModels
         public ICommand SubscribeToETHUSD1mCommand { get; set; }
         public ICommand UnsubscribeToETHUSD1mCommand { get; set; }
 
-        public WebSocketCandlesViewModel()
+        public WebSocketCandlesViewModel(Client client)
         {
-            Candles = [];
+            _client = client;
             _client.CandleSeriesProcessing += AddCandle;
+
+            Candles = [];
+            
             SubscribeToBTCUSD1mCommand = new RelayCommand(x => Subscribe("BTCUSD", "1m"));
             UnsubscribeToBTCUSD1mCommand = new RelayCommand(x => Unsubscribe("BTCUSD", "1m"));
             SubscribeToETHUSD1mCommand = new RelayCommand(x => Subscribe("ETHUSD", "1m"));
             UnsubscribeToETHUSD1mCommand = new RelayCommand(x => Unsubscribe("ETHUSD", "1m"));
         }
 
-
         private void AddCandle(Candle candle)
         {
-            App.Current.Dispatcher.Invoke(() =>
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
             {
-                if(Candles.Count == 0)
+                if (Candles.Count == 0)
                     Candles.Insert(0, candle);
-
+                // пересчёт незавершенной свечи в момент апдейта
                 else if (Candles.Any(c => c.Pair == candle.Pair && c.OpenTime.Minute == candle.OpenTime.Minute))
                 {
                     Candle badCandle = Candles.First(c => c.Pair == candle.Pair && c.OpenTime.Minute == candle.OpenTime.Minute);
@@ -53,8 +51,8 @@ namespace BitfinexConnectorProject.ViewModels
                 }
                 else
                     Candles.Insert(0, candle);
-
-                if (Candles.Count > 100)
+                // если свечей больше максимально возможного числа, стираются самые старые
+                if (Candles.Count > CandlesMaxCount)
                     Candles.RemoveAt(Candles.Count - 1);
             });
         }

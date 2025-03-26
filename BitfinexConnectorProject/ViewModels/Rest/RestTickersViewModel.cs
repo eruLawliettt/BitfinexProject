@@ -1,18 +1,13 @@
 ﻿using BitfinexConnectorProject.Models;
 using BitfinexConnectorProject.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace BitfinexConnectorProject.ViewModels
+namespace BitfinexConnectorProject.ViewModels.Rest
 {
     internal class RestTickersViewModel : ViewModelBase
     {
-        private readonly Client _client = new();
+        private Client _client;
 
         public ObservableCollection<Ticker> TickerData { get; set; } = [];
 
@@ -22,8 +17,9 @@ namespace BitfinexConnectorProject.ViewModels
         public ICommand GetETHBTCTickerCommand { get; }
         public ICommand GetLTCBTCTickerCommand { get; }
 
-        public RestTickersViewModel()
+        public RestTickersViewModel(Client client)
         {
+            _client = client;
             GetBTCUSDTickerCommand = new RelayCommand(async _ => await GetBTCUSDTicker());
             GetETHUSDTickerCommand = new RelayCommand(async _ => await GetETHUSDTicker());
             GetLTCUSDTickerCommand = new RelayCommand(async _ => await GetLTCUSDTicker());
@@ -36,14 +32,14 @@ namespace BitfinexConnectorProject.ViewModels
         private async Task GetLTCUSDTicker() => await LoadTickerDataAsync("tLTCUSD");
         private async Task GetETHBTCDTicker() => await LoadTickerDataAsync("tETHBTC");
         private async Task GetLTCBTCTicker() => await LoadTickerDataAsync("tLTCBTC");
-        
+
 
         private async Task LoadTickerDataAsync(string pair)
         {
             if (TickerData.Any())
                 TickerData.Clear();
 
-           TickerData.Add(await _client.GetTickerAsync(pair));
+            TickerData.Add(await _client.GetTickerAsync(pair));
         }
     }
 }

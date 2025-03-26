@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BitfinexConnectorProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97a225efc97b3cbb341bfb94bfcfae65d76b642f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7443481e90b791c46ca53250f3baa9eb5dd7f002")]
 [assembly: System.Reflection.AssemblyProductAttribute("BitfinexConnectorProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BitfinexConnectorProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

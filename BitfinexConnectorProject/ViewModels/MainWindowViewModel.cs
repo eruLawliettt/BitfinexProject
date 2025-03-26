@@ -1,19 +1,16 @@
-﻿using BitfinexConnectorProject.Models;
-using BitfinexConnectorProject.Services;
+﻿using BitfinexConnectorProject.Services;
+using BitfinexConnectorProject.ViewModels.Rest;
+using BitfinexConnectorProject.ViewModels.WebSocket;
 using BitfinexConnectorProject.Views;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Windows.Input;
 
 namespace BitfinexConnectorProject.ViewModels
 {
     internal class MainWindowViewModel : ViewModelBase
     {
-        private object _currentView;
+        private readonly Client _client = new();
 
+        private object _currentView;
         public object CurrentView
         {
             get { return _currentView; }
@@ -36,12 +33,24 @@ namespace BitfinexConnectorProject.ViewModels
 
         public MainWindowViewModel()
         {
+            ViewsInitialization();
+
             RestTradesViewCommand = new RelayCommand(x => ChangeViewToRestTrades());
             RestCandlesViewCommand = new RelayCommand(x => ChangeViewToRestCandles());
             RestTickersViewCommand = new RelayCommand(x => ChangeViewToRestTickers());
             WebSocketTradesViewCommand = new RelayCommand(x => ChangeViewToWebSocketTrades());
             WebSocketCandlesViewCommand = new RelayCommand(x => ChangeViewToWebSocketCandles());
             BalanceViewCommand = new RelayCommand(x => ChangeViewToBalance());
+        }
+
+        private void ViewsInitialization()
+        {
+            _restTradesView.DataContext = new RestTradesViewModel(_client);
+            _restCandlesView.DataContext = new RestCandlesViewModel(_client);
+            _restTickersView.DataContext = new RestTickersViewModel(_client);
+            _webSocketTradesView.DataContext = new WebSocketTradesViewModel(_client);
+            _webSocketCandlesView.DataContext = new WebSocketCandlesViewModel(_client);
+            _balanceView.DataContext = new BalanceViewModel(_client);
         }
 
         private void ChangeViewToRestTrades()
@@ -64,7 +73,6 @@ namespace BitfinexConnectorProject.ViewModels
         {
             CurrentView = _webSocketCandlesView;
         }
-
         private void ChangeViewToBalance()
         {
             CurrentView = _balanceView;

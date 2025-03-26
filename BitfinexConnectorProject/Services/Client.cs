@@ -23,7 +23,7 @@ namespace BitfinexConnectorProject.Services
 
         public async Task<IEnumerable<Trade>> GetNewTradesAsync(string pair, int maxCount)
         {
-            var options = new RestClientOptions($"https://api-pub.bitfinex.com/v2/trades/t{pair}/hist?limit={maxCount}");
+            var options = new RestClientOptions($"https://api-pub.bitfinex.com/v2/trades/{pair}/hist?limit={maxCount}");
             var client = new RestClient(options);
             var request = new RestRequest("");
             request.AddHeader("accept", "application/json");
@@ -188,9 +188,7 @@ namespace BitfinexConnectorProject.Services
         {
             try
             {
-                Console.WriteLine($"Raw JSONL: {message}");
                 JsonElement json = default;
-
                 try
                 {
                     json = JsonDocument.Parse(message).RootElement;

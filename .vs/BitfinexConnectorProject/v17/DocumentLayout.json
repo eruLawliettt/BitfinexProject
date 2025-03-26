@@ -3,36 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|c:\\users\\coffe\\source\\repos\\bitfinexconnectorproject\\bitfinexconnectorproject\\viewmodels\\websocketcandlesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|solutionrelative:bitfinexconnectorproject\\viewmodels\\websocketcandlesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|c:\\users\\coffe\\source\\repos\\bitfinexconnectorproject\\bitfinexconnectorproject\\viewmodels\\rest\\resttradesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|solutionrelative:bitfinexconnectorproject\\viewmodels\\rest\\resttradesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|c:\\users\\coffe\\source\\repos\\bitfinexconnectorproject\\bitfinexconnectorproject\\services\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|solutionrelative:bitfinexconnectorproject\\services\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|c:\\users\\coffe\\source\\repos\\bitfinexconnectorproject\\bitfinexconnectorproject\\viewmodels\\balanceviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|solutionrelative:bitfinexconnectorproject\\viewmodels\\balanceviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|c:\\users\\coffe\\source\\repos\\bitfinexconnectorproject\\bitfinexconnectorproject\\viewmodels\\websockettradesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|solutionrelative:bitfinexconnectorproject\\viewmodels\\websockettradesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|c:\\users\\coffe\\source\\repos\\bitfinexconnectorproject\\bitfinexconnectorproject\\viewmodels\\restcandlesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|solutionrelative:bitfinexconnectorproject\\viewmodels\\restcandlesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|c:\\users\\coffe\\source\\repos\\bitfinexconnectorproject\\bitfinexconnectorproject\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|solutionrelative:bitfinexconnectorproject\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|c:\\users\\coffe\\source\\repos\\bitfinexconnectorproject\\bitfinexconnectorproject\\views\\balanceview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|solutionrelative:bitfinexconnectorproject\\views\\balanceview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|c:\\users\\coffe\\source\\repos\\bitfinexconnectorproject\\bitfinexconnectorproject\\views\\websocketcandlesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|solutionrelative:bitfinexconnectorproject\\views\\websocketcandlesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|c:\\users\\coffe\\source\\repos\\bitfinexconnectorproject\\bitfinexconnectorproject\\viewmodels\\rest\\resttickersviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE69985B-A89F-4569-9DF0-15A4615B9A04}|BitfinexConnectorProject\\BitfinexConnectorProject.csproj|solutionrelative:bitfinexconnectorproject\\viewmodels\\rest\\resttickersviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,113 +18,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 160,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Client.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\Services\\Client.cs",
-              "RelativeDocumentMoniker": "BitfinexConnectorProject\\Services\\Client.cs",
-              "ToolTip": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\Services\\Client.cs",
-              "RelativeToolTip": "BitfinexConnectorProject\\Services\\Client.cs",
-              "ViewState": "AQIAAJAAAAAAAAAAAAArwJ0AAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T13:53:56.613Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "WebSocketTradesViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\WebSocketTradesViewModel.cs",
-              "RelativeDocumentMoniker": "BitfinexConnectorProject\\ViewModels\\WebSocketTradesViewModel.cs",
-              "ToolTip": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\WebSocketTradesViewModel.cs",
-              "RelativeToolTip": "BitfinexConnectorProject\\ViewModels\\WebSocketTradesViewModel.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAmwAAAAAAAAAAA",
+              "DocumentIndex": 0,
+              "Title": "RestTradesViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\Rest\\RestTradesViewModel.cs",
+              "RelativeDocumentMoniker": "BitfinexConnectorProject\\ViewModels\\Rest\\RestTradesViewModel.cs",
+              "ToolTip": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\Rest\\RestTradesViewModel.cs",
+              "RelativeToolTip": "BitfinexConnectorProject\\ViewModels\\Rest\\RestTradesViewModel.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAuwCkAAABcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T16:37:02.164Z",
+              "WhenOpened": "2025-03-26T11:07:21.915Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RestCandlesViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\RestCandlesViewModel.cs",
-              "RelativeDocumentMoniker": "BitfinexConnectorProject\\ViewModels\\RestCandlesViewModel.cs",
-              "ToolTip": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\RestCandlesViewModel.cs",
-              "RelativeToolTip": "BitfinexConnectorProject\\ViewModels\\RestCandlesViewModel.cs",
+              "DocumentIndex": 1,
+              "Title": "RestTickersViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\Rest\\RestTickersViewModel.cs",
+              "RelativeDocumentMoniker": "BitfinexConnectorProject\\ViewModels\\Rest\\RestTickersViewModel.cs",
+              "ToolTip": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\Rest\\RestTickersViewModel.cs",
+              "RelativeToolTip": "BitfinexConnectorProject\\ViewModels\\Rest\\RestTickersViewModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T16:36:43.857Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MainWindowViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\MainWindowViewModel.cs",
-              "RelativeDocumentMoniker": "BitfinexConnectorProject\\ViewModels\\MainWindowViewModel.cs",
-              "ToolTip": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\MainWindowViewModel.cs",
-              "RelativeToolTip": "BitfinexConnectorProject\\ViewModels\\MainWindowViewModel.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAowAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T16:36:23.839Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "WebSocketCandlesViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\WebSocketCandlesViewModel.cs",
-              "RelativeDocumentMoniker": "BitfinexConnectorProject\\ViewModels\\WebSocketCandlesViewModel.cs",
-              "ToolTip": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\WebSocketCandlesViewModel.cs",
-              "RelativeToolTip": "BitfinexConnectorProject\\ViewModels\\WebSocketCandlesViewModel.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAmwDMAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T16:17:52.504Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "BalanceView.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\Views\\BalanceView.xaml",
-              "RelativeDocumentMoniker": "BitfinexConnectorProject\\Views\\BalanceView.xaml",
-              "ToolTip": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\Views\\BalanceView.xaml",
-              "RelativeToolTip": "BitfinexConnectorProject\\Views\\BalanceView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-25T15:04:07.661Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "WebSocketCandlesView.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\Views\\WebSocketCandlesView.xaml",
-              "RelativeDocumentMoniker": "BitfinexConnectorProject\\Views\\WebSocketCandlesView.xaml",
-              "ToolTip": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\Views\\WebSocketCandlesView.xaml",
-              "RelativeToolTip": "BitfinexConnectorProject\\Views\\WebSocketCandlesView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-25T16:17:50.671Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BalanceViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\BalanceViewModel.cs",
-              "RelativeDocumentMoniker": "BitfinexConnectorProject\\ViewModels\\BalanceViewModel.cs",
-              "ToolTip": "C:\\Users\\coffe\\source\\repos\\BitfinexConnectorProject\\BitfinexConnectorProject\\ViewModels\\BalanceViewModel.cs",
-              "RelativeToolTip": "BitfinexConnectorProject\\ViewModels\\BalanceViewModel.cs",
-              "ViewState": "AQIAAJIAAAAAAAAAAAAQwLAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T13:53:39.387Z",
+              "WhenOpened": "2025-03-26T11:07:21.192Z",
               "EditorCaption": ""
             }
           ]
