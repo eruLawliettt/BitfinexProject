@@ -12,6 +12,13 @@ namespace BitfinexConnectorProject.ViewModels.WebSocket
 
         private const decimal TradesMaxCount = 100;
 
+        private ObservableCollection<string> _subscribes;
+        public ObservableCollection<string> Subscribes
+        {
+            get { return _subscribes; }
+            set => Set(ref _subscribes, value, nameof(Subscribes));
+        }
+
         private ObservableCollection<Trade> _trades;
         public ObservableCollection<Trade> Trades
         {
@@ -30,6 +37,7 @@ namespace BitfinexConnectorProject.ViewModels.WebSocket
             _client.NewBuyTrade += AddTrade;
             _client.NewSellTrade += AddTrade;
 
+            Subscribes = [];
             Trades = [];
 
             SubscribeToBTCUSDCommand = new RelayCommand(x => Subscribe("tBTCUSD"));
@@ -49,10 +57,20 @@ namespace BitfinexConnectorProject.ViewModels.WebSocket
             });
         }
 
-        private void Subscribe(string pair) => _client.SubscribeTrades(pair);
-        private void Unsubscribe(string pair) => _client.UnsubscribeTrades(pair);
+        private void Subscribe(string pair)
+        {
+            _client.SubscribeTrades(pair);
 
+            if (!Subscribes.Any(s => s == pair))
+                Subscribes.Add(pair);
+        }
+        private void Unsubscribe(string pair)
+        {         
+            _client.UnsubscribeTrades(pair);
 
+            if (Subscribes.Any(s => s == pair))
+                Subscribes.Remove(pair);
+        }
 
     }
 }

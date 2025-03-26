@@ -20,6 +20,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height=".2*"/>
                 <RowDefinition/>
+                <RowDefinition Height=".1*"/>
+                <RowDefinition Height=".4*"/>
             </Grid.RowDefinitions>
 
             <TextBlock
@@ -67,7 +69,31 @@
                 Command="{Binding UnsubscribeToETHUSDCommand}"/>
 
         </StackPanel>
+
+            <TextBlock
+                Grid.Row="2"
+                FontSize="16"
+                Margin="10 0 0 0"
+                Text="Subscribed to:"
+                VerticalAlignment="Bottom"/>
+
+            <ItemsControl 
+                Grid.Row="3" 
+                Margin="10 10 0 0"
+                ItemsSource="{Binding Subscribes}">
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock
+                            Text="{Binding}"
+                            FontSize="16"
+                            Foreground="Green"
+                            FontWeight="Bold"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
             
+
         </Grid>
         
         <DataGrid

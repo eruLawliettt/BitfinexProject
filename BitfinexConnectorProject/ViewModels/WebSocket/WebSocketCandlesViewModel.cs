@@ -11,6 +11,13 @@ namespace BitfinexConnectorProject.ViewModels.WebSocket
 
         private const decimal CandlesMaxCount = 100;
 
+        private ObservableCollection<string> _subscribes;
+        public ObservableCollection<string> Subscribes
+        {
+            get { return _subscribes; }
+            set => Set(ref _subscribes, value, nameof(Subscribes));
+        }
+
         private ObservableCollection<Candle> _candles;
         public ObservableCollection<Candle> Candles
         {
@@ -28,8 +35,10 @@ namespace BitfinexConnectorProject.ViewModels.WebSocket
             _client = client;
             _client.CandleSeriesProcessing += AddCandle;
 
+            Subscribes = [];
             Candles = [];
             
+            // в данной реализации хард код на обработку подписок с периодом в 1 минуту #TODO переделать
             SubscribeToBTCUSD1mCommand = new RelayCommand(x => Subscribe("tBTCUSD", "1m"));
             UnsubscribeToBTCUSD1mCommand = new RelayCommand(x => Unsubscribe("tBTCUSD", "1m"));
             SubscribeToETHUSD1mCommand = new RelayCommand(x => Subscribe("tETHUSD", "1m"));
@@ -42,7 +51,7 @@ namespace BitfinexConnectorProject.ViewModels.WebSocket
             {
                 if (Candles.Count == 0)
                     Candles.Insert(0, candle);
-                // пересчёт незавершенной свечи в момент апдейта
+                // пересчёт незавершенной свечи в момент апдейта - хард код на период в 1 минуту!!! #TODO переделать
                 else if (Candles.Any(c => c.Pair == candle.Pair && c.OpenTime.Minute == candle.OpenTime.Minute))
                 {
                     Candle badCandle = Candles.First(c => c.Pair == candle.Pair && c.OpenTime.Minute == candle.OpenTime.Minute);
@@ -57,7 +66,21 @@ namespace BitfinexConnectorProject.ViewModels.WebSocket
             });
         }
 
-        private void Subscribe(string pair, string period) => _client.SubscribeCandles(pair, period);
-        private void Unsubscribe(string pair, string period) => _client.UnsubscribeCandles(pair, period);
+        private void Subscribe(string pair, string period)
+        { 
+            _client.SubscribeCandles(pair, period);
+
+            string key = pair + "p" + period;
+            if (!Subscribes.Any(s => s == key))
+                Subscribes.Add(key);
+        }
+        private void Unsubscribe(string pair, string period) 
+        { 
+            _client.UnsubscribeCandles(pair, period);
+
+            string key = pair + "p" + period;
+            if (Subscribes.Any(s => s == key))
+                Subscribes.Remove(key);
+        }
     }
 }
