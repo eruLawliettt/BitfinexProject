@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\App.xaml
-7-241472098
+71870092633
 
-25-253557410
+25-2032564948
 199-1553471712
-MainWindow.xaml;Views\BalanceView.xaml;Views\RestCandlesView.xaml;Views\RestTickersView.xaml;Views\RestTradesView.xaml;Views\WebSocketCandlesView.xaml;Views\WebSocketTradesView.xaml;
+Views\MainWindow.xaml;Views\Rest\RestCandlesView.xaml;Views\Rest\RestTickersView.xaml;Views\Rest\RestTradesView.xaml;Views\WebSocket\BalanceView.xaml;Views\WebSocket\WebSocketCandlesView.xaml;Views\WebSocket\WebSocketTradesView.xaml;
 
 False
 

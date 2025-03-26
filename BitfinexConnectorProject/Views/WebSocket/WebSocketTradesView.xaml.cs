@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BitfinexConnectorProject.Views
+namespace BitfinexConnectorProject.Views.WebSocket
 {
     /// <summary>
-    /// Логика взаимодействия для RestCandlesView.xaml
+    /// Логика взаимодействия для WebSocketTradesView.xaml
     /// </summary>
-    public partial class RestCandlesView : Page
+    public partial class WebSocketTradesView : Page
     {
-        public RestCandlesView()
+        public WebSocketTradesView()
         {
             InitializeComponent();
         }

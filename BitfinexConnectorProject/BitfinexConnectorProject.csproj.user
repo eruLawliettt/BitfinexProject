@@ -7,45 +7,45 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\BalanceView.xaml.cs">
+    <Compile Update="Views\WebSocket\BalanceView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\RestCandlesView.xaml.cs">
+    <Compile Update="Views\Rest\RestCandlesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\RestTickersView.xaml.cs">
+    <Compile Update="Views\Rest\RestTickersView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\RestTradesView.xaml.cs">
+    <Compile Update="Views\Rest\RestTradesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\WebSocketCandlesView.xaml.cs">
+    <Compile Update="Views\WebSocket\WebSocketCandlesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\WebSocketTradesView.xaml.cs">
+    <Compile Update="Views\WebSocket\WebSocketTradesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="MainWindow.xaml">
+    <Page Update="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\BalanceView.xaml">
+    <Page Update="Views\WebSocket\BalanceView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\RestCandlesView.xaml">
+    <Page Update="Views\Rest\RestCandlesView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\RestTickersView.xaml">
+    <Page Update="Views\Rest\RestTickersView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\RestTradesView.xaml">
+    <Page Update="Views\Rest\RestTradesView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\WebSocketCandlesView.xaml">
+    <Page Update="Views\WebSocket\WebSocketCandlesView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\WebSocketTradesView.xaml">
+    <Page Update="Views\WebSocket\WebSocketTradesView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

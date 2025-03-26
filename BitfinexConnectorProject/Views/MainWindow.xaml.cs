@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 using BitfinexConnectorProject.Models;
 using BitfinexConnectorProject.Services;
 
-namespace BitfinexConnectorProject
+namespace BitfinexConnectorProject.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

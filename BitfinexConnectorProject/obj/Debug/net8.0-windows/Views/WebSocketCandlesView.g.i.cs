@@ -54,7 +54,7 @@ namespace BitfinexConnectorProject.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BitfinexConnectorProject;component/views/websocketcandlesview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BitfinexConnectorProject;V1.0.0.0;component/views/websocketcandlesview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\WebSocketCandlesView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

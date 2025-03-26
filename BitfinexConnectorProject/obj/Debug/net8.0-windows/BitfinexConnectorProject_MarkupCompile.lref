@@ -1,10 +1,10 @@
 ﻿
 
-FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\MainWindow.xaml;;
-FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\BalanceView.xaml;;
-FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\RestCandlesView.xaml;;
-FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\RestTickersView.xaml;;
-FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\RestTradesView.xaml;;
-FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\WebSocketCandlesView.xaml;;
-FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\WebSocketTradesView.xaml;;
+FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\MainWindow.xaml;;
+FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\Rest\RestCandlesView.xaml;;
+FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\Rest\RestTickersView.xaml;;
+FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\Rest\RestTradesView.xaml;;
+FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\WebSocket\BalanceView.xaml;;
+FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\WebSocket\WebSocketCandlesView.xaml;;
+FC:\Users\coffe\source\repos\BitfinexConnectorProject\BitfinexConnectorProject\Views\WebSocket\WebSocketTradesView.xaml;;
 

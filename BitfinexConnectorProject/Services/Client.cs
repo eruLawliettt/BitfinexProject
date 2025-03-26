@@ -15,6 +15,9 @@ using System.Web;
 
 namespace BitfinexConnectorProject.Services
 {
+    // Согласно SOLID, следует разделить интерфейс на IRestTestConnector и ISocketTestConnector, соответственно и класс Client по-хорошему
+    // разделить по сферам применения, однако в изначальных файлах задания, весь функционал был описан в одном классе, поэтому я решил 
+    // оставить как есть
     internal class Client : ITestConnector
     {
         #region Rest
@@ -54,7 +57,8 @@ namespace BitfinexConnectorProject.Services
                 throw new Exception($"Ошибка парсинга JSON: {ex.Message}");
             }
         }
-        public async Task<IEnumerable<Candle>> GetCandleSeriesAsync(string pair, string period, DateTimeOffset? from, DateTimeOffset? to = null, long? count = 0)
+        public async Task<IEnumerable<Candle>> GetCandleSeriesAsync(string pair, string period, 
+            DateTimeOffset? from, DateTimeOffset? to = null, long? count = 0)
         {
             string baseUrl = $"https://api-pub.bitfinex.com/v2/candles/trade%3A{period}%3At{pair}/hist";
 
@@ -95,9 +99,7 @@ namespace BitfinexConnectorProject.Services
                         OpenTime = DateTimeOffset.FromUnixTimeMilliseconds(candle[0].GetInt64())
                     });
                 }
-
                 return candles;
-
             }
             catch (Exception ex)
             {
@@ -128,16 +130,13 @@ namespace BitfinexConnectorProject.Services
                     HighPrice = tickerDataJson[8].GetDecimal(),
                     LowPrice = tickerDataJson[9].GetDecimal(),
                 };
-
                 return ticker;
-
             }
             catch (Exception ex)
             {
                 throw new Exception($"Ошибка парсинга JSON: {ex.Message}");
             }
         }
-
 
         #endregion
 
@@ -153,6 +152,8 @@ namespace BitfinexConnectorProject.Services
 
         public event Action<Trade> NewBuyTrade;
         public event Action<Trade> NewSellTrade;
+        public event Action<Candle> CandleSeriesProcessing;
+        public event Action<TickerDTO> TickerDTOProcessing;
 
         public async Task ConnectToWebSocketAsync()
         {
@@ -161,6 +162,7 @@ namespace BitfinexConnectorProject.Services
 
             if (_ws.State == WebSocketState.Closed || _ws.State == WebSocketState.Aborted)
             {
+                IsConnected = false;
                 _ws.Dispose();
                 _ws = new ClientWebSocket();
             }
@@ -170,6 +172,7 @@ namespace BitfinexConnectorProject.Services
             _ = Task.Run(ReceiveMessages);
             
         }
+
         private async Task SendMessage(string message)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(message);
@@ -209,7 +212,7 @@ namespace BitfinexConnectorProject.Services
                 if (json.ValueKind != JsonValueKind.Array && json.TryGetProperty("event", out var eventType))
                 {
                     string eventName = eventType.GetString();
-                    
+                  
                     if (eventName == "subscribed")
                     {
                         string channel = json.GetProperty("channel").GetString();
@@ -229,8 +232,8 @@ namespace BitfinexConnectorProject.Services
                         }
                         else if (channel == "ticker")
                         {
-                            string key = json.GetProperty("symbol").GetString() + "ticker"; // если это тикер, key = symbol + "ticker"
-                            _subscribsions[key] = chanId;
+                            string key = json.GetProperty("symbol").GetString() + "ticker"; // если это тикер, key = symbol + "ticker" 
+                            _subscribsions[key] = chanId;                                   // (нужно чтобы можно было отличить тикер от трейда)
                             _channelMap[chanId] = key;
                         };
                     }
@@ -251,12 +254,12 @@ namespace BitfinexConnectorProject.Services
 
                     if (_channelMap.TryGetValue(chanId, out var key))
                     {
-                        // Trade Update - значит пришел трейд
+                        // tu = Trade Update - значит пришел трейд
                         if (json[1].ValueKind == JsonValueKind.String && json[1].GetString() == "tu")
                         {
                             var trade = new Trade
                             {
-                                Pair = key, // в данном контексте key -> это пара типа "BTCUSD"
+                                Pair = key, // в данном контексте key -> это пара типа "tBTCUSD"
                                 Price = json[2][3].GetDecimal(),
                                 Amount = Math.Abs(json[2][2].GetDecimal()),
                                 Side = json[2][2].GetDecimal() > 0 ? "buy" : "sell",
@@ -308,7 +311,8 @@ namespace BitfinexConnectorProject.Services
             }
         }
 
-        // maxCount я бы тут убрал, т.к. все подобные описаны непосредственно во ViewModel которая использует этот метод
+ 
+        // maxCount я бы тут убрал, т.к. описывать такие ограничения мне удобнее непосредственно во ViewModel которая использует этот метод
         public async void SubscribeTrades(string pair, int maxCount = 100)
         {
             await ConnectToWebSocketAsync();
@@ -332,13 +336,11 @@ namespace BitfinexConnectorProject.Services
             
         }   
 
-
-        public event Action<Candle> CandleSeriesProcessing;
         public async void SubscribeCandles(string pair, string period, DateTimeOffset? from = null, DateTimeOffset? to = null, long? count = 0)
         {
             await ConnectToWebSocketAsync();
 
-            string key = $"trade:{period}:t{pair}";
+            string key = $"trade:{period}:{pair}";
             if (_subscribsions.TryGetValue(key, out int channelId))
                 return;
 
@@ -347,7 +349,7 @@ namespace BitfinexConnectorProject.Services
         }
         public async void UnsubscribeCandles(string pair, string period)
         {
-            string key = $"trade:{period}:t{pair}";
+            string key = $"trade:{period}:{pair}";
             if (!_subscribsions.TryGetValue(key, out int channelId))
                 return;
 
@@ -357,9 +359,7 @@ namespace BitfinexConnectorProject.Services
             _subscribsions.Remove(key);
             _channelMap.Remove(channelId);
         }
-
-
-        public event Action<TickerDTO> TickerDTOProcessing;
+        
         public async void SubscribeTickers(string pair)
         {
             await ConnectToWebSocketAsync();

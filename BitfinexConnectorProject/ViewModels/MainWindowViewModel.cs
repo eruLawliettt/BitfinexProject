@@ -1,7 +1,8 @@
 ﻿using BitfinexConnectorProject.Services;
 using BitfinexConnectorProject.ViewModels.Rest;
 using BitfinexConnectorProject.ViewModels.WebSocket;
-using BitfinexConnectorProject.Views;
+using BitfinexConnectorProject.Views.Rest;
+using BitfinexConnectorProject.Views.WebSocket;
 using System.Windows.Input;
 
 namespace BitfinexConnectorProject.ViewModels

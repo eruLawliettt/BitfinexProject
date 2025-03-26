@@ -3,6 +3,7 @@ using System.Windows.Input;
 
 namespace BitfinexConnectorProject
 {
+    // нельзя выполнять команды с параметром || #TODO изменить RelayCommand, чтобы можно было передавать параметры
     internal class RelayCommand : ICommand
     {
         private readonly Action<object> _execute;
@@ -18,7 +19,5 @@ namespace BitfinexConnectorProject
         public void Execute(object parameter) => _execute(parameter);
 
         public event EventHandler CanExecuteChanged;
-        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        
     }
 }

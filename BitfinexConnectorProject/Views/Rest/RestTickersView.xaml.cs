@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BitfinexConnectorProject.Views
+namespace BitfinexConnectorProject.Views.Rest
 {
     /// <summary>
-    /// Логика взаимодействия для BalanceView.xaml
+    /// Логика взаимодействия для RestTickersView.xaml
     /// </summary>
-    public partial class BalanceView : Page
+    public partial class RestTickersView : Page
     {
-        public BalanceView()
+        public RestTickersView()
         {
             InitializeComponent();
         }

@@ -30,10 +30,10 @@ namespace BitfinexConnectorProject.ViewModels.WebSocket
 
             Candles = [];
             
-            SubscribeToBTCUSD1mCommand = new RelayCommand(x => Subscribe("BTCUSD", "1m"));
-            UnsubscribeToBTCUSD1mCommand = new RelayCommand(x => Unsubscribe("BTCUSD", "1m"));
-            SubscribeToETHUSD1mCommand = new RelayCommand(x => Subscribe("ETHUSD", "1m"));
-            UnsubscribeToETHUSD1mCommand = new RelayCommand(x => Unsubscribe("ETHUSD", "1m"));
+            SubscribeToBTCUSD1mCommand = new RelayCommand(x => Subscribe("tBTCUSD", "1m"));
+            UnsubscribeToBTCUSD1mCommand = new RelayCommand(x => Unsubscribe("tBTCUSD", "1m"));
+            SubscribeToETHUSD1mCommand = new RelayCommand(x => Subscribe("tETHUSD", "1m"));
+            UnsubscribeToETHUSD1mCommand = new RelayCommand(x => Unsubscribe("tETHUSD", "1m"));
         }
 
         private void AddCandle(Candle candle)
